@@ -2,10 +2,11 @@
 
 namespace App\Strategy;
 
-use Entity\Formater;
+
 
 use SimpleXMLElement;
-use Interface\FormaterInterface;
+use App\Entity\Formater;
+use App\Interface\FormaterInterface;
 use App\Interface\StrategyInterface;
 
 class XmlFormat  implements StrategyInterface

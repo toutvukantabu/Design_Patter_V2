@@ -1,8 +1,8 @@
 <?php
 
-namespace Entity;
+namespace App\Entity;
 
-use Interface\FormaterInterface;
+use App\Interface\FormaterInterface;
 
 class Formater implements FormaterInterface
 {
@@ -27,7 +27,7 @@ class Formater implements FormaterInterface
         return $this;
     }
 
-    private function isJson($data): bool
+    private static function isJson($data): bool
 
     {
         if (is_string($data)) {

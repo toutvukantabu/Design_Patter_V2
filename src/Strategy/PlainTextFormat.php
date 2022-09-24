@@ -3,9 +3,9 @@
 namespace App\Strategy;
 
 use App\Interface\StrategyInterface;
-use Interface\FormaterInterface;
+use App\Interface\FormaterInterface;
 
-class PlaintextFormat implements StrategyInterface
+class PlainTextFormat implements StrategyInterface
 {
 
     private string $implode;
@@ -16,7 +16,7 @@ class PlaintextFormat implements StrategyInterface
     }
 
 
-    public function Transform( FormaterInterface $format)
+    public function Transform(FormaterInterface $format)
     {
         return implode($this->implode, $format->getData());
     }

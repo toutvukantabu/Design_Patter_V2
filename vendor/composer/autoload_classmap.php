@@ -6,10 +6,12 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'App\\Strategy\\AbstractStrategy' => $baseDir . '/src/Strategy/AbstractStrategy.php',
+    'App\\Factory\\FormatFactory' => $baseDir . '/src/Factory/FormatFactory.php',
+    'App\\Interface\\StrategyInterface' => $baseDir . '/src/Interface/StrategyInterface.php',
+    'App\\Strategy\\JsonFormat' => $baseDir . '/src/Strategy/JsonFormat.php',
+    'App\\Strategy\\PlainTextFormat' => $baseDir . '/src/Strategy/PlainTextFormat.php',
     'App\\Strategy\\Strategy' => $baseDir . '/src/Strategy/Strategy.php',
-    'App\\Strategy\\StrategyInterface' => $baseDir . '/src/Strategy/StrategyInterface.php',
-    'App\\Strategy\\XmlStrategy' => $baseDir . '/src/Strategy/XmlStrategy.php',
+    'App\\Strategy\\XmlFormat' => $baseDir . '/src/Strategy/XmlFormat.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'DI\\Annotation\\Inject' => $vendorDir . '/php-di/php-di/src/Annotation/Inject.php',
     'DI\\Annotation\\Injectable' => $vendorDir . '/php-di/php-di/src/Annotation/Injectable.php',

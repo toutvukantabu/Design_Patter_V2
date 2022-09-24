@@ -2,7 +2,9 @@
 
 namespace App\Interface;
 
-use Entity\Formater;
+use App\Entity\Formater;
+
+
 
 Interface StrategyInterface{
 

@@ -3,7 +3,7 @@
 namespace App\Strategy;
 
 
-use Interface\FormaterInterface;
+use App\Interface\FormaterInterface;
 use App\Interface\StrategyInterface;
 
 class JsonFormat  implements StrategyInterface
