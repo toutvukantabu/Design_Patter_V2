@@ -2,13 +2,13 @@
 
 namespace App\Strategy;
 
+use Entity\Formater;
+
 use SimpleXMLElement;
+use Interface\FormaterInterface;
+use App\Interface\StrategyInterface;
 
-use App\Strategy\AbstractStrategy;
-use App\Strategy\StrategyInterface;
-
-
-class XmlStrategy extends AbstractStrategy implements StrategyInterface
+class XmlFormat  implements StrategyInterface
 {
 
     private string $rootElement;
@@ -18,21 +18,15 @@ class XmlStrategy extends AbstractStrategy implements StrategyInterface
     public function __construct(string $rootElement = null)
     {
         $this->xml = new SimpleXMLElement($rootElement !== null ? $rootElement : '<root/>');
-
     }
 
-
-    public function transform(array $data)
+    public function transform(FormaterInterface $formater)
     {
-        return self::arrayToXml(parent::toArray($data));
-    }
-
-    private function arrayToXml(array $data)
-    {
-        foreach ($data as $k => $v) {
+        foreach ($formater->getData() as $k => $v) {
             if (is_array($v)) {
-
-                self::arrayToXml($v, $k, $this->x->addChild($k));
+                $formaterTwo = (new Formater())->setData($v);
+                self::transform($formaterTwo);
+                $this->xml->addChild($k);
             } else {
                 $this->xml->addChild($k, $v);
             }

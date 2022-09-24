@@ -1,15 +1,15 @@
 <?php
 
-
+use App\Strategy\JsonFormat;
 use App\Strategy\Strategy;
-use App\Strategy\JsonStrategy;
-use App\Strategy\XmlStrategy;
+use Entity\Formater;
 
 require '../vendor/autoload.php';
 
 
 $data = ['test'=>'test'];
-$strategy = new Strategy();
-$strategy->setStrategy((new JsonStrategy()));
-$strategy->setStrategy((new XmlStrategy()));
-var_dump($strategy->getStrategy()->transform($data));
+$formater = (new Formater())->setData($data);
+
+$strategy = new Strategy(new JsonFormat());
+
+var_dump($strategy->getDataTransformed($formater));

@@ -1,0 +1,11 @@
+<?php
+
+namespace Interface;
+
+interface FormaterInterface
+{
+
+    public function getData(): ?array;
+
+    public function setData($data): self;
+}

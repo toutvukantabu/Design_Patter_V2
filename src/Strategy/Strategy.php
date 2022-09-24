@@ -2,21 +2,22 @@
 
 namespace App\Strategy;
 
+use Interface\FormaterInterface;
+use App\Interface\StrategyInterface;
+
 class Strategy
 {
 
     private StrategyInterface $strategy;
 
+public function __construct(StrategyInterface $strategy){
 
-    public function setStrategy(StrategyInterface $strategy)
+$this->strategy = $strategy;
+
+}
+    public function getDataTransformed(FormaterInterface $formater): string
     {
-
-        $this->strategy = $strategy;
+    return $this->strategy->transform($formater);
     }
 
-    public function getStrategy(): StrategyInterface
-    {
-
-        return $this->strategy;
-    }
 }
