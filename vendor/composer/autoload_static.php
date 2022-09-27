@@ -62,11 +62,12 @@ class ComposerStaticInit744c5e70121701f2796f9012890423a6
     );
 
     public static $classMap = array (
-        'App\\Factory\\FormatFactory' => __DIR__ . '/../..' . '/src/Factory/FormatFactory.php',
+        'App\\Context\\Serializer' => __DIR__ . '/../..' . '/src/Context/Serializer.php',
+        'App\\Interface\\NormalizerInteface' => __DIR__ . '/../..' . '/src/Interface/NormalizerInteface.php',
         'App\\Interface\\StrategyInterface' => __DIR__ . '/../..' . '/src/Interface/StrategyInterface.php',
-        'App\\Strategy\\JsonFormat' => __DIR__ . '/../..' . '/src/Strategy/JsonFormat.php',
+        'App\\Normalizer\\JsonNormalizer' => __DIR__ . '/../..' . '/src/Normalizer/JsonNormalizer.php',
+        'App\\Normalizer\\ObjectNormalizer' => __DIR__ . '/../..' . '/src/Normalizer/ObjectNormalizer.php',
         'App\\Strategy\\PlainTextFormat' => __DIR__ . '/../..' . '/src/Strategy/PlainTextFormat.php',
-        'App\\Strategy\\Strategy' => __DIR__ . '/../..' . '/src/Strategy/Strategy.php',
         'App\\Strategy\\XmlFormat' => __DIR__ . '/../..' . '/src/Strategy/XmlFormat.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'DI\\Annotation\\Inject' => __DIR__ . '/..' . '/php-di/php-di/src/Annotation/Inject.php',

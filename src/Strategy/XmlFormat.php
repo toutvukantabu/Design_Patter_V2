@@ -16,12 +16,12 @@ class XmlFormat  implements StrategyInterface
 
     private SimpleXMLElement $xml;
 
-    public function __construct(string $rootElement = null)
+    public function __construct(Normalizer $normalizer,string $rootElement = null)
     {
         $this->xml = new SimpleXMLElement($rootElement !== null ? $rootElement : '<root/>');
     }
 
-    public function transform(FormaterInterface $formater)
+    public function transform(Normalizer $normalizer)
     {
         foreach ($formater->getData() as $k => $v) {
             if (is_array($v)) {

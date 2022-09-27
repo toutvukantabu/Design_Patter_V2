@@ -1,15 +1,12 @@
 <?php
 
-use App\Entity\Formater;
-use App\Strategy\PlainTextFormat;
-use App\Strategy\Strategy;
+use App\Context\Serializer;
 
 require '../vendor/autoload.php';
 
 
 $data = ['test'=>'test'];
-$formater = (new Formater())->setData($data);
-
-$strategy = new Strategy( new PlainTextFormat);
-
- var_dump($strategy->getDataTransformed($formater));
+$json = json_encode($data);
+$serializer = ( new Serializer($data, 'json'))->serialize();
+$serializer2 = ( new Serializer($json, 'array'))->serialize();
+ var_dump($serializer, $serializer2);

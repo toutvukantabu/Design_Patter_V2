@@ -2,12 +2,10 @@
 
 namespace App\Interface;
 
-use App\Entity\Formater;
-
-
+use App\Interface\NormalizerInteface;
 
 Interface StrategyInterface{
 
-    public function transform(Formater $formater);
+    public function transform(NormalizerInteface $dataNormalized);
     
 }

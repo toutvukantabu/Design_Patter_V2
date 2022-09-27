@@ -6,11 +6,12 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'App\\Factory\\FormatFactory' => $baseDir . '/src/Factory/FormatFactory.php',
+    'App\\Context\\Serializer' => $baseDir . '/src/Context/Serializer.php',
+    'App\\Interface\\NormalizerInteface' => $baseDir . '/src/Interface/NormalizerInteface.php',
     'App\\Interface\\StrategyInterface' => $baseDir . '/src/Interface/StrategyInterface.php',
-    'App\\Strategy\\JsonFormat' => $baseDir . '/src/Strategy/JsonFormat.php',
+    'App\\Normalizer\\JsonNormalizer' => $baseDir . '/src/Normalizer/JsonNormalizer.php',
+    'App\\Normalizer\\ObjectNormalizer' => $baseDir . '/src/Normalizer/ObjectNormalizer.php',
     'App\\Strategy\\PlainTextFormat' => $baseDir . '/src/Strategy/PlainTextFormat.php',
-    'App\\Strategy\\Strategy' => $baseDir . '/src/Strategy/Strategy.php',
     'App\\Strategy\\XmlFormat' => $baseDir . '/src/Strategy/XmlFormat.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'DI\\Annotation\\Inject' => $vendorDir . '/php-di/php-di/src/Annotation/Inject.php',

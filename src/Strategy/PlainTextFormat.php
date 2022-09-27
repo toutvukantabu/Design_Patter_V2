@@ -16,7 +16,7 @@ class PlainTextFormat implements StrategyInterface
     }
 
 
-    public function Transform(FormaterInterface $format)
+    public function Transform(Normalizer $normalizer)
     {
         return implode($this->implode, $format->getData());
     }
