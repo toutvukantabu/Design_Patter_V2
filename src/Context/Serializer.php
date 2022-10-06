@@ -25,10 +25,10 @@ class Serializer
 
     public  function __construct(array $definedFormater = null,  array $definedNormalizer = null)
     {
-        if ($definedFormater || $definedNormalizer) {
+
             if ($definedFormater) $this->definedNormalizer = $definedNormalizer;
             if ($definedNormalizer) $this->definedFormater = $definedFormater;
-        }
+        
     }
 
     public function serialize(mixed $object, string $format): self
