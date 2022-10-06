@@ -12,5 +12,8 @@
         {
             "name": "Gwendal"
         }
-    ]
+    ],
+    "require-dev": {
+        "symfony/var-dumper": "^6.0"
+    }
 }
