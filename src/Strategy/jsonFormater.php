@@ -15,4 +15,8 @@ class jsonFormater  implements StrategyInterface
     {
         return  json_encode($dataNormalized);
     }
+    public function support(string $param): bool
+    {
+         return $param = 'object';
+    }
 }
