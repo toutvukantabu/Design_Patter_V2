@@ -2,19 +2,19 @@
 
 namespace App\Normalizer;
 
-use App\Interface\NormalizerInteface;
+use App\Interface\NormalizerInterface;
 
-class JsonNormalizer implements NormalizerInteface
+class JsonNormalizer implements NormalizerInterface
 {
 
      public function normalize(mixed $serializableObject): array
      {
-
-          return  json_decode(json_encode($serializableObject), true);
+          dump(json_decode($serializableObject));
+          return  json_decode($serializableObject);
      }
 
      public function support(string $param): bool
      {
-          return $param = 'xml';
+          return $param = 'json';
      }
 }

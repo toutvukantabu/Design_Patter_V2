@@ -1,12 +1,11 @@
 <?php
 namespace App\Normalizer;
 
-use App\Context\Serializer;
-use App\Interface\NormalizerInteface;
+use App\Interface\NormalizerInterface;
 
 
 
-class XMLNormalizer implements NormalizerInteface
+class XmlNormalizer implements NormalizerInterface
 {
 
 
@@ -19,7 +18,7 @@ class XMLNormalizer implements NormalizerInteface
 
         public function support(string $param): bool
         {
-             return $param = 'object';
+             return $param = 'xml';
         }
         
 }

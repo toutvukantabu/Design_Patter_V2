@@ -11,12 +11,12 @@ use Normalizer;
 class jsonFormater  implements StrategyInterface
 {
 
-    public function Transform(Normalizer $normalizer): string
+    public function Transform(array $data): string
     {
-        return  json_encode($dataNormalized);
+        return  json_encode($data);
     }
     public function support(string $param): bool
     {
-         return $param = 'object';
+         return $param = 'json';
     }
 }

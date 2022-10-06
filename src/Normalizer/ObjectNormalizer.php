@@ -1,8 +1,8 @@
 <?php
 namespace App\Normalizer;
 
-use App\Interface\NormalizerInteface;
-class ObjectNormalizer implements NormalizerInteface
+use App\Interface\NormalizerInterface;
+class ObjectNormalizer implements NormalizerInterface
 {
 
     public function normalize( mixed $objet): array

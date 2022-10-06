@@ -3,7 +3,7 @@
 namespace App\Strategy;
 
 use App\Interface\StrategyInterface;
-use App\Interface\FormaterInterface;
+use App\Interface\NormalizerInteface;
 
 class PlainTextFormater implements StrategyInterface
 {
@@ -16,8 +16,13 @@ class PlainTextFormater implements StrategyInterface
     }
 
 
-    public function transform(Normalizer $normalizer)
+    public function Transform(array $data)
     {
-        return implode($this->implode, $format->getData());
+        return implode('', $data);
+    }
+
+    public function support(string $param): bool
+    {
+         return $param = 'PlainText';
     }
 }

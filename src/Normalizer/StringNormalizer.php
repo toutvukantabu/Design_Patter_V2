@@ -2,9 +2,9 @@
 
 namespace App\Normalizer;
 
-use App\Interface\NormalizerInteface;
+use App\Interface\NormalizerInterface;
 
-class StringNormalizer implements NormalizerInteface
+class StringNormalizer implements NormalizerInterface
 {
 
      public function normalize(mixed $serializableObject): array

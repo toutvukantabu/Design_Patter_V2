@@ -7,6 +7,7 @@ namespace App\Strategy;
 use SimpleXMLElement;
 use App\Entity\Formater;
 use App\Interface\FormaterInterface;
+use App\Interface\NormalizerInteface;
 use App\Interface\StrategyInterface;
 
 class XmlFormater  implements StrategyInterface
@@ -18,18 +19,9 @@ class XmlFormater  implements StrategyInterface
 
 
 
-    public function transform(Normalizer $normalizer)
+    public function transform(array $data)
     {
-        foreach ($formater->getData() as $k => $v) {
-            if (is_array($v)) {
-                $formaterTwo = (new Formater())->setData($v);
-                self::transform($formaterTwo);
-                $this->xml->addChild($k);
-            } else {
-                $this->xml->addChild($k, $v);
-            }
-        }
-        return $this->xml->asXML();
+        return $data;
     }
 
 

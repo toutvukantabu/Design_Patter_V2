@@ -2,54 +2,72 @@
 
 namespace App\Context;
 
-use App\Interface\NormalizerInteface;
-use App\Normalizer\JsonNormalizer;
-use App\Normalizer\ObjectNormalizer;
-use App\Normalizer\XMLNormalizer;
-use App\Strategy\jsonFormater;
-use App\Strategy\PlainTextFormater;
 use App\Strategy\XmlFormater;
+use App\Strategy\jsonFormater;
+use App\Normalizer\XmlNormalizer;
+use App\Normalizer\JsonNormalizer;
+use App\Strategy\PlainTextFormater;
+use App\Interface\StrategyInterface;
+use App\Normalizer\ObjectNormalizer;
+
+use App\Interface\NormalizerInterface;
 
 class Serializer
 {
     private ?array $definedFormater = [];
     private ?array $definedNormalizer = [];
-    private ?array $DatasFormated = [];
+    private ?array $datasFormated = [];
+    private mixed $dataFormated;
 
     private array $formater = [jsonFormater::class, XmlFormater::class, PlainTextFormater::class];
 
-    private array $normalizer = [JsonNormalizer::class, ObjectNormalizer::class, XMLNormalizer::class];
+    private array $normalizer = [JsonNormalizer::class, ObjectNormalizer::class, XmlNormalizer::class];
 
     public  function __construct(array $definedFormater = null,  array $definedNormalizer = null)
     {
-        $this->definedNormalizer = $definedNormalizer;
-        $this->definedFormater = $definedFormater;
+        if ($definedFormater || $definedNormalizer) {
+            if ($definedFormater) $this->definedNormalizer = $definedNormalizer;
+            if ($definedNormalizer) $this->definedFormater = $definedFormater;
+        }
     }
 
-    public function serialize(mixed $object, string $format): mixed
+    public function serialize(mixed $object, string $format): self
     {
         if (!$this->definedFormater && !$format) {
 
             echo 'Erreur format required';
         }
 
-        $normalizer  = $this->normalizer ? $this->definedNormalizer : $this->normalizer;
+        $normalizer  = $this->normalizer ?? $this->definedNormalizer;
+        $formater = $this->formater ?? $this->definedFormater;
+
+        $countFormater = count($formater);
 
         foreach ($normalizer  as $normalize) {
+            foreach ($formater as $format) {
+                $normalizerClass  = new $normalize;
+                $formaterClass = new $format;
+                // dump($normalizer instanceof NormalizerInterface ,$formaterClass instanceof StrategyInterface);
+                if ($normalizerClass instanceof NormalizerInterface &&   $formaterClass instanceof StrategyInterface) {
+                    if ($normalizerClass->support($format)) {
+                        if (is_array($object)) {
 
+                            $this->dataFormated = $formaterClass->transform($object);
+                        } else {
 
+                            $this->dataFormated = $formaterClass->transform($normalizerClass->normalize($object));
+                        }
 
-            if ($normalize->support($format) || $normalize instanceof NormalizerInteface) {
-                return $normalize->normalize($object);
+                        if ($countFormater > 1) {
+
+                            array_push($this->datasFormated, $this->dataFormated);
+                        }
+                    }
+                }
             }
         }
 
-        // foreach ($this->formater as $format) {
-
-        //     if ($format->support($format)) {
-        //         return $format->transform($object);
-        //     }
-        // }
+        return $this;
     }
 
 
