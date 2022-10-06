@@ -2,45 +2,35 @@
 
 namespace App\Context;
 
-use App\Normalizer\XMLNormalizer;
-use App\Strategy\JsonSerializer;
-use App\Strategy\PlaintextFormat;
-use Normalizer;
+use App\Strategy\jsonFormater;
+use App\Strategy\PlainTextFormater;
+use App\Strategy\XmlFormater;
 
 class Serializer
 {
+    private array $formater = [
+        new jsonFormater, new XmlFormater, new PlainTextFormater
 
-    private  $strategy = null;
-    private $object = null;
-    
-    public  function __construct(mixed $object, string $method)
+    ];
+
+    private array $normalizer = [
+
+
+    ];
+
+    public  function __construct(array $formater)
     {
+   // foreach si interface 
 
-        switch ($method) {
-
-            case ('xml'):
-                return $this->strategy = new XMLNormalizer(new Normalizer($object));
-                break;
-            case ('json'):
-                return $this->strategy = new JsonSerializer(new Normalizer($object));
-                break;
-            case ('plainText'):
-                return $this->strategy = new PlaintextFormat(new Normalizer($object));
-                break;
-            default:
-                echo 'error no strategy found';
-                break;
-        }
     }
 
-    public function serialize()
+    public function serialize(mixed $object, string $format): mixed
     {
-        if (!$this->object) {
-            return [];
+        foreach ($this->formater as $format) {
+
+            if ($format->support($format)) {
+                return $format->transform($object);
+            }
         }
-        return $this->strategy->transform($this->object);
     }
-
-
-
 }

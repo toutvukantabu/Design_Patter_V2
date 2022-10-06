@@ -8,7 +8,7 @@ use App\Interface\StrategyInterface;
 use App\Interface\NormalizerInteface;
 use Normalizer;
 
-class JsonSerializer  implements StrategyInterface
+class jsonFormater  implements StrategyInterface
 {
 
     public function Transform(Normalizer $normalizer): string

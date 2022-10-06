@@ -6,6 +6,7 @@ use App\Interface\NormalizerInteface;
 
 Interface StrategyInterface{
 
-    public function transform(NormalizerInteface $dataNormalized);
+    public function transform();
+    public function support();
     
 }

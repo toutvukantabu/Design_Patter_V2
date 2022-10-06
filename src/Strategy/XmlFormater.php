@@ -9,17 +9,14 @@ use App\Entity\Formater;
 use App\Interface\FormaterInterface;
 use App\Interface\StrategyInterface;
 
-class XmlFormat  implements StrategyInterface
+class XmlFormater  implements StrategyInterface
 {
 
     private string $rootElement;
 
     private SimpleXMLElement $xml;
 
-    public function __construct(Normalizer $normalizer,string $rootElement = null)
-    {
-        $this->xml = new SimpleXMLElement($rootElement !== null ? $rootElement : '<root/>');
-    }
+
 
     public function transform(Normalizer $normalizer)
     {
@@ -33,5 +30,10 @@ class XmlFormat  implements StrategyInterface
             }
         }
         return $this->xml->asXML();
+    }
+
+
+    public function Support(string $param):bool {
+        return $param = 'xml';
     }
 }

@@ -9,9 +9,10 @@ use App\Interface\NormalizerInteface;
 class ObjectNormalizer implements NormalizerInteface
 {
 
-    public function normalize( $serializableObject): array{
+    public function normalize( objet $objet): array
+    {
 
-        return  json_decode(json_encode($serializableObject), true);
+        return  json_decode(json_encode($objet), true);
         
         }
         
