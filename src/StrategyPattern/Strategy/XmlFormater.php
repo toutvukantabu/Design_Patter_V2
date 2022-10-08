@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Strategy;
+namespace App\StrategyPattern\Strategy;
 
 
 
 use SimpleXMLElement;
-use App\Entity\Formater;
-use App\Interface\FormaterInterface;
-use App\Interface\NormalizerInteface;
-use App\Interface\StrategyInterface;
+use App\StrategyPattern\Interface\StrategyInterface;
 
 class XmlFormater  implements StrategyInterface
 {
@@ -25,7 +22,8 @@ class XmlFormater  implements StrategyInterface
     }
 
 
-    public function Support(string $param):bool {
+    public function Support(string $param): bool
+    {
         return $param = 'xml';
     }
 }

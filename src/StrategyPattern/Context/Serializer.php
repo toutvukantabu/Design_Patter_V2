@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Context;
+namespace App\StrategyPattern\Context;
 
-use App\Strategy\XmlFormater;
-use App\Strategy\jsonFormater;
-use App\Normalizer\XmlNormalizer;
-use App\Normalizer\JsonNormalizer;
-use App\Strategy\PlainTextFormater;
-use App\Interface\StrategyInterface;
-use App\Normalizer\ObjectNormalizer;
+use App\StrategyPattern\Strategy\XmlFormater;
+use App\StrategyPattern\Strategy\jsonFormater;
+use App\StrategyPattern\Normalizer\XmlNormalizer;
+use App\StrategyPattern\Normalizer\JsonNormalizer;
+use App\StrategyPattern\Strategy\PlainTextFormater;
+use App\StrategyPattern\Interface\StrategyInterface;
+use App\StrategyPattern\Normalizer\ObjectNormalizer;
 
-use App\Interface\NormalizerInterface;
+use App\StrategyPattern\Interface\NormalizerInterface;
 
 class Serializer
 {
@@ -26,9 +26,8 @@ class Serializer
     public  function __construct(array $definedFormater = null,  array $definedNormalizer = null)
     {
 
-            if ($definedFormater) $this->definedNormalizer = $definedNormalizer;
-            if ($definedNormalizer) $this->definedFormater = $definedFormater;
-        
+        if ($definedFormater) $this->definedNormalizer = $definedNormalizer;
+        if ($definedNormalizer) $this->definedFormater = $definedFormater;
     }
 
     public function serialize(mixed $object, string $format): self
@@ -48,20 +47,15 @@ class Serializer
                 $normalizerClass  = new $normalize;
                 $formaterClass = new $format;
                 // dump($normalizer instanceof NormalizerInterface ,$formaterClass instanceof StrategyInterface);
-                if ($normalizerClass instanceof NormalizerInterface &&   $formaterClass instanceof StrategyInterface) {
-                    if ($normalizerClass->support($format)) {
-                        if (is_array($object)) {
 
-                            $this->dataFormated = $formaterClass->transform($object);
-                        } else {
+                $datanormalized = $normalizerClass->normalize($object);
+                if (is_array($datanormalized) ) {
 
-                            $this->dataFormated = $formaterClass->transform($normalizerClass->normalize($object));
-                        }
+                    $this->dataFormated = $formaterClass->transform($datanormalized);
+dump($this->dataFormated);
+                    if ($countFormater > 1) {
 
-                        if ($countFormater > 1) {
-
-                            array_push($this->datasFormated, $this->dataFormated);
-                        }
+                        array_push($this->datasFormated, $this->dataFormated);
                     }
                 }
             }
@@ -87,5 +81,21 @@ class Serializer
     public function getDefinedNormalizer()
     {
         return $this->definedNormalizer;
+    }
+
+    /**
+     * Get the value of datasFormated
+     */ 
+    public function getDatasFormated()
+    {
+        return $this->datasFormated;
+    }
+
+    /**
+     * Get the value of dataFormated
+     */ 
+    public function getDataFormated()
+    {
+        return $this->dataFormated;
     }
 }

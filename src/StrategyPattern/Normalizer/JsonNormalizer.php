@@ -1,16 +1,19 @@
 <?php
 
-namespace App\Normalizer;
+namespace App\StrategyPattern\Normalizer;
 
-use App\Interface\NormalizerInterface;
+use App\StrategyPattern\Interface\NormalizerInterface;
 
 class JsonNormalizer implements NormalizerInterface
 {
 
      public function normalize(mixed $serializableObject): array
      {
-          dump(json_decode($serializableObject));
-          return  json_decode($serializableObject);
+          if (is_array($serializableObject)) {
+
+               return [];
+          }
+          return  json_decode($serializableObject,true);
      }
 
      public function support(string $param): bool

@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Strategy;
+namespace App\StrategyPattern\Strategy;
 
-use App\Interface\StrategyInterface;
-use App\Interface\NormalizerInteface;
+use App\StrategyPattern\Interface\StrategyInterface;
 
 class PlainTextFormater implements StrategyInterface
 {
@@ -23,6 +22,6 @@ class PlainTextFormater implements StrategyInterface
 
     public function support(string $param): bool
     {
-         return $param = 'PlainText';
+        return $param = 'PlainText';
     }
 }
