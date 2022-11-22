@@ -4,20 +4,34 @@ namespace App\StrategyPattern\Normalizer;
 
 use App\StrategyPattern\Interface\NormalizerInterface;
 
-class ObjectNormalizer implements NormalizerInterface
+
+use DateTimeInterface;
+
+class ObjectNormalizer
 {
 
-    public function normalize(mixed $object): ?array
+    public function Normalize($object): ?array
     {
-        if (!is_object($object)) {
 
-            return [];
+        if (!\is_object($object)) {
+            return null;
         }
-        return  json_decode(json_encode($object), true);
+        foreach ((array) $object as $key => $value) {
+            if ($value instanceof DateTimeInterface) {
+                $value = $value->format('Y/m/d h:i:s');
+            }
+            if (empty($value)) {
+                $value = null;
+            }
+
+            $array[preg_replace('/\000(.*)\000/', '', $key)] = $value;
+        }
+
+        return $array;
     }
 
     public function support(string $param): bool
     {
-        return $param = 'object';
+        return 'object' === $param;
     }
 }
