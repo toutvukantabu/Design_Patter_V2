@@ -4,20 +4,25 @@ namespace App\StrategyPattern\Normalizer;
 
 use App\StrategyPattern\Interface\NormalizerInterface;
 
-class StringNormalizer implements NormalizerInterface
+class StringNormalizer
 {
 
-     public function normalize(mixed $serializableObject): array
-     {
-          if (!is_string($serializableObject)) {
+    public function Normalize( $dataNormalized): ?array
+    {
 
-               return [];
-          }
-          return  explode('', $serializableObject);
-     }
+        if(!\is_string($dataNormalized)){
+            return null;
+        }
+        if (isset($option['explode'])) {
 
-     public function support(string $param): bool
-     {
-          return $param = 'string';
-     }
+            return explode($option['explode'], $dataNormalized);
+        }
+        return  explode(' ', $dataNormalized);
+    }
+
+    public function support(string $param): bool
+    {
+        return 'ToString'=== $param;
+    }
+
 }
