@@ -20,7 +20,7 @@ class Serializer
     private $dataFormated = null;
     private ?array $dataNormalized = null;
 
-    private array $formater = [JsonFormater::class, PlainTextFormater::class, ArrayFormater::class, LogsFormater::class];
+    private array $formater = [JsonFormater::class, PlainTextFormater::class, ArrayFormater::class];
 
     private array $normalizer = [JsonNormalizer::class, ObjectNormalizer::class, StringNormalizer::class];
 
