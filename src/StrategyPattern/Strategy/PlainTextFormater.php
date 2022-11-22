@@ -14,14 +14,14 @@ class PlainTextFormater implements StrategyInterface
         $this->impode = $implode;
     }
 
-
-    public function Transform(array $data)
+    public function Transform(array $data): ?string
     {
-        return implode('', $data);
+        $toString = implode(',', $data);
+        return str_replace(',,', '', $toString);
     }
 
     public function support(string $param): bool
     {
-        return $param = 'PlainText';
+        return 'PlainText' === $param ;
     }
 }
